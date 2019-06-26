@@ -33,19 +33,23 @@ def candidateOverlapsTarget(target, candidate, overlap):
 
 
 def findLargestOverlap(target, candidate):
-	if strandsAreNotEmpty(target, candidate) and strandsAreEqualLength(target, candidate):
-		largest = 0
-		for i in range(len(target)):
-			
+	#if strandsAreNotEmpty(target, candidate) and strandsAreEqualLength(target, candidate):
+	#	largest = 0
+	#	for i in range(len(target)):
+	#		
+	#else:
+	#	return -1	
+	pass
+
+def findBestCandidate(target, candidate):
+	pass
+
+
+def joinTwoStrands(target, candidate, overlap):
+	if len(candidate) == 0:
+		return target
 	else:
-		return -1	
-
-
-#def findBestCandidate
-
-
-#def joinTwoStrands
-
+		return target + candidate[overlap:]
 
 #def main():
 
