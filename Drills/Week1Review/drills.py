@@ -11,7 +11,7 @@ def letters_up_to_char(long_word, char):
     new = ''
     for i in range(len(long_word)):
         if long_word[i] == char:
-            break
+            continue
         else:
             new += long_word[i]
     return new

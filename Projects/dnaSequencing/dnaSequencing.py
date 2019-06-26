@@ -28,9 +28,7 @@ def strandsAreEqualLengths(strand1, strand2):
 
 
 def candidateOverlapsTarget(target, candidate, overlap):
-	pass
-	#???
-
+    
 
 def findLargestOverlap(target, candidate):
 	if strandsAreNotEmpty(target, candidate) and strandsAreEqualLength(target, candidate):
