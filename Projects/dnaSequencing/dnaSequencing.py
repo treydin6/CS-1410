@@ -28,20 +28,31 @@ def strandsAreEqualLengths(strand1, strand2):
 
 
 def candidateOverlapsTarget(target, candidate, overlap):
-    
+    return target[-overlap:] == candidate[:overlap] 
 
 def findLargestOverlap(target, candidate):
-	#if strandsAreNotEmpty(target, candidate) and strandsAreEqualLength(target, candidate):
-	#	largest = 0
-	#	for i in range(len(target)):
-	#		
-	#else:
-	#	return -1	
-	pass
+    largest = 0
+    if target == candidate and len(target) > 0:
+        return len(target)
+    elif len(target) == len(candidate) and len(target) > 0:
+        for i in range(len(target)):
+            x = target[len(target) - i:]
+            y = candidate[:i]
+            if x == y:
+                largest = i
+        return largest
+    else:
+        return -1
 
-def findBestCandidate(target, candidate):
-	pass
-
+def findBestCandidate(target, candidates):
+    can = ''
+    largest = 0
+    for candidate in candidates:
+        new = findLargestOverlap(target, candidate)
+        if new > largest:
+            largest = new
+            can = candidate
+    return can, largest
 
 def joinTwoStrands(target, candidate, overlap):
 	if len(candidate) == 0:
@@ -49,5 +60,23 @@ def joinTwoStrands(target, candidate, overlap):
 	else:
 		return target + candidate[overlap:]
 
-#def main():
+def main():
+    tar = input('Target strand filename: ')
+    validate = fileToList(tar)
+    target = returnFirstString(validate)
+    can = input('Candidate strands filename: ')
+    candidate = fileToList(can)
+    candidate, overlap = findBestCandidate(target, candidate)
+    final = joinTwoStrands(target, candidate, overlap)
+    print(final)
+
+
+if __name__=='__main__':
+    main()
+
+
+
+
+
+
 
