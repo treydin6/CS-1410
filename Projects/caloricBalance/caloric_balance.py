@@ -2,9 +2,9 @@ class CaloricBalance:
     
     def __init__(self, gender, age, height, weight):
         self.weight = weight
-        self.balance = -self.getMBR(gender, age, height, weight)
+        self.balance = -self.getBMR(gender, age, height, weight)
 
-    def getMBR(self, gender, age, height, weight):
+    def getBMR(self, gender, age, height, weight):
         if gender == 'm':
             return  66 + (12.7 * height) + (6.23 * weight) - (6.8 * age)
         elif gender == 'f':
@@ -17,8 +17,9 @@ class CaloricBalance:
 
     ## Caloric Burn Per Pound Per Minute
     def recordActivity(self, CBPPPM, minutes):
-        CBPM = CBPPPM * self.weight       #Calories buurned per minute
-        CB = CBPM * minutes               #
+        CBPM = CBPPPM * self.weight       # Calories buurned per minute
+        CB = CBPM * minutes               # Caloric Balance
         self.balance -= CB
 
-    def
+    def eatFood(self, calories):
+        self.balance += calories
