@@ -2,21 +2,21 @@ import pygame
 
 class Ball:
     def __init__(self, size, min_x, max_x, min_y, max_y, left_paddle_x, right_paddle_x):
-        self.mX = min_x                     # x cordinate to top left of ball
-        self.mY = min_y                     # y cordinate to top left of ball
-        self.mSize = size                   # length of the sides of the ball/ ball is square
-        self.mDX = 0                        # DX = Delta-x // speed of the ball on x axis
-        self.mDY = 0                        # DY = Delta-y // speed of the ball on y axis
-        self.mMinX = min_x                  # represents the wall on the left 
-        self.mMaxX = max_x                  # represents the wall on the right
-        self.mMinY = min_y                  # represents the wall on the top
-        self.mMaxY = max_y                  # represents the wall on the bottom
-        self.mLeftPaddleX = left_paddle_x
-        self.mLeftPaddleMinY = min_y        
-        self.mLeftPaddleMaxY = max_y
-        self.mRightPaddleX = right_paddle_x
-        self.mRightPaddleMinY = min_y
-        self.mRightPaddleMaxY = max_y
+        self.mX = min_x                         # x cordinate to top left of ball
+        self.mY = min_y                         # y cordinate to top left of ball
+        self.mSize = size                       # length of the sides of the ball/ ball is square
+        self.mDX = 0                            # DX = Delta-x // speed of the ball on x axis
+        self.mDY = 0                            # DY = Delta-y // speed of the ball on y axis
+        self.mMinX = min_x                      # represents the wall on the left 
+        self.mMaxX = max_x                      # represents the wall on the right
+        self.mMinY = min_y                      # represents the wall on the top
+        self.mMaxY = max_y                      # represents the wall on the bottom
+        self.mLeftPaddleX = left_paddle_x       # 
+        self.mLeftPaddleMinY = min_y            # 
+        self.mLeftPaddleMaxY = max_y            # 
+        self.mRightPaddleX = right_paddle_x     # 
+        self.mRightPaddleMinY = min_y           # 
+        self.mRightPaddleMaxY = max_y           # 
 
     def getX(self):
         return self.mX
@@ -62,3 +62,20 @@ class Ball:
 
     def getRightPaddleMaxY(self):
         return self.mRightPaddleMaxY
+
+    ####################
+    ### Setters Test ###
+    ####################
+    
+    def setPosition(self, x, y):
+        if x > self.getMinX() + self.getSize() and x < self.getMaxY() - self.getSize():
+            if y > self.getMinY() + self.getSize() and y < self.getMaxY() - self.getSize():
+                self.mX = x
+                self.mY = y
+
+    def setSpeed(self, dx,dy):
+        self.mDX = dx
+        self.mDY = dy
+
+    def setLeftPaddleY(paddle_min_y,paddle_max_y):
+        
