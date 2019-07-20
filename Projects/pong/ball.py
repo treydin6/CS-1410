@@ -1,4 +1,4 @@
-import pygame
+
 
 class Ball:
     def __init__(self, size, min_x, max_x, min_y, max_y, left_paddle_x, right_paddle_x):
@@ -77,5 +77,24 @@ class Ball:
         self.mDX = dx
         self.mDY = dy
 
-    def setLeftPaddleY(paddle_min_y,paddle_max_y):
+    def setLeftPaddleY(self, paddle_min_y,paddle_max_y):
+        if paddle_min_y >= self.getLeftPaddleMinY() and paddle_max_y <= self.getLeftPaddleMaxY():
+            if paddle_min_y <= paddle_max_y:
+                self.mLeftPaddleMinY = paddle_min_y
+                self.mLeftPaddleMaxY = paddle_max_y
+
+    def setRightPaddleY(self, paddle_min_y, paddle_max_y):
+        if paddle_min_y >= self.getRightPaddleMinY() and paddle_max_y <= self.getRightPaddleMaxY():
+            if paddle_min_y <= paddle_max_y:
+                self.mRightPaddleMinY = paddle_min_y
+                self.mRightPaddleMaxY = paddle_max_y
+
+
+    def checkTop(new_y):
         
+
+    def checkBottom(new_y)
+
+    def checkLeft(new_x)
+ 
+    def checkRight(new_x)
