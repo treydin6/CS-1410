@@ -90,11 +90,40 @@ class Ball:
                 self.mRightPaddleMaxY = paddle_max_y
 
 
-    def checkTop(new_y):
-        
+    def checkTop(self, new_y):
+        if new_y >= self.mMinY:
+            return new_y
+        else:
+            new = self.mMinY - new_y
+            new_y = self.mMinY + new
+            self.mDY = -self.mDY
+            return new_y
 
-    def checkBottom(new_y)
+    def checkBottom(self, new_y):
+        if (new_y + self.mSize) <= self.mMaxY:
+            return new_y
+        else:
+            self.mDY = -self.mDY
+            new = new_y - self.mMaxY
+            new_y = (self.mMaxY - new) - self.mSize
+            return new_y -self.mSize
 
-    def checkLeft(new_x)
+    def checkLeft(self, new_x):
+        if new_x >= self.mMinX:
+            return new_x
+        else:
+            self.setSpeed(0,0)
+            new_x = self.mMinX
+            return new_x
  
-    def checkRight(new_x)
+    def checkRight(self, new_x):
+        if (new_x + self.mSize) <= self.mMaxX:
+            return new_x
+        else:
+            self.setSpeed(0, 0)
+            new_x = (self.mMaxX - self.mSize)
+            return new_x
+
+
+
+
