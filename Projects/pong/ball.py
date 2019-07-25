@@ -124,6 +124,37 @@ class Ball:
             new_x = (self.mMaxX - self.mSize)
             return new_x
 
+    def checkLeftPaddle(new_x,new_y):
+        # wrong logic, x must be to the face of paddle
+        # y will be compared to the sides of the paddle
+        if new_x < self.getLeftPaddleMinY():
+            if new_x > self.getLeftPaddleMaxY():
+                if new_y <
+            
+
+
+    def checkRightPaddle(new_x,new_y):
+        pass
+
+
+    def move(dt):
+        pass
+
+
+    def serveLeft(x,min_y,max_y,min_dx,max_dx,min_dy,max_dy):
+        pass
+
+
+    def serveRight(x,min_y,max_y,min_dx,max_dx,min_dy,max_dy):
+        pass
+
+
+    def draw(surface):
+        pass
+
+
+    
+
 
 
 
