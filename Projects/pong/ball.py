@@ -1,5 +1,6 @@
 
 
+
 class Ball:
     def __init__(self, size, min_x, max_x, min_y, max_y, left_paddle_x, right_paddle_x):
         self.mX = min_x                         # x cordinate to top left of ball
@@ -124,21 +125,49 @@ class Ball:
             new_x = (self.mMaxX - self.mSize)
             return new_x
 
-    def checkLeftPaddle(new_x,new_y):
-        # wrong logic, x must be to the face of paddle
-        # y will be compared to the sides of the paddle
-        if new_x < self.getLeftPaddleMinY():
-            if new_x > self.getLeftPaddleMaxY():
-                if new_y <
-            
+    def checkLeftPaddle(self, new_x,new_y):
+        mid_y = (self.mY + new_y) / 2
+        if self.mLeftPaddleMinY <= mid_y <= self.mLeftPaddleMaxY:
+            if new_x <= self.mLeftPaddleX <= self.mX:
+                self.mDX = -self.mDX
+                diff = self.mLeftPaddleX - new_x
+                actual_x = self.mLeftPaddleX + diff
+                return actual_x
+            else:
+                return new_x
+        else:
+            return new_x    
+
+    
+    def checkRightPaddle(self, new_x, new_y):
+        mid_y = (self.mY + new_y) / 2
+        if self.mRightPaddleMinY <= mid_y <= self.mRightPaddleMaxY:
+            if (new_x + self.mSize) >= self.mRightPaddleX >= self.mX:
+                self.mDX *= -1
+                diff = (new_x + self.mSize) - self.mRightPaddleX
+                act_x = self.mRightPaddleX - diff - self.mSize
+                return act_x
+            else:
+                return new_x
+        else:
+            return new_x
 
 
-    def checkRightPaddle(new_x,new_y):
-        pass
+    def move(self, dt):
+        new_x = self.mX + self.mDX * dt
+        new_y = self.mY + self.mDY * dt
 
+        new_y = self.checkTop(new_y)
+        new_y = self.checkBottom(new_y)
 
-    def move(dt):
-        pass
+        new_x = self.checkLeft(new_x)
+        new_x = self.checkRight(new_x)
+
+        new_x = self.checkLeftPaddle(new_x, new_y)
+        new_x = self.checkRightPaddle(new_x, new_y)
+
+        self.mX = new_x
+        self.mY = new_y
 
 
     def serveLeft(x,min_y,max_y,min_dx,max_dx,min_dy,max_dy):
