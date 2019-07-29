@@ -67,10 +67,14 @@ class Ball:
     ####################
     ### Setters Test ###
     ####################
+
+    
     
     def setPosition(self, x, y):
-        if x > self.getMinX() + self.getSize() and x < self.getMaxY() - self.getSize():
-            if y > self.getMinY() + self.getSize() and y < self.getMaxY() - self.getSize():
+        # if x > self.getMinX() + self.getSize() and x < self.getMaxY() - self.getSize():
+        #     if y > self.getMinY() + self.getSize() and y < self.getMaxY() - self.getSize():
+        if x >= self.mMinX and (x + self.mSize) <= self.mMaxX:
+            if y >= self.mMinY and (y + self.mSize) <= self.mMaxY:
                 self.mX = x
                 self.mY = y
 
@@ -125,64 +129,66 @@ class Ball:
             new_x = (self.mMaxX - self.mSize)
             return new_x
 
-    def checkLeftPaddle(self, new_x,new_y):
+    def checkLeftPaddle(self, new_x, new_y):
         mid_y = (self.mY + new_y) / 2
-        if self.mLeftPaddleMinY <= mid_y <= self.mLeftPaddleMaxY:
-            if new_x <= self.mLeftPaddleX <= self.mX:
+        if mid_y > self.mLeftPaddleMinY and mid_y < self.mLeftPaddleMaxY:
+            if new_x <= self.mLeftPaddleX and self.mX > self.mLeftPaddleX:
+                dif = self.mLeftPaddleX - new_x
+                new = self.mLeftPaddleX + dif
                 self.mDX = -self.mDX
-                diff = self.mLeftPaddleX - new_x
-                actual_x = self.mLeftPaddleX + diff
-                return actual_x
+                return new
             else:
                 return new_x
         else:
-            return new_x    
+            return new_x
+        
 
     
     def checkRightPaddle(self, new_x, new_y):
-        mid_y = (self.mY + new_y) / 2
-        if self.mRightPaddleMinY <= mid_y <= self.mRightPaddleMaxY:
-            if (new_x + self.mSize) >= self.mRightPaddleX >= self.mX:
-                self.mDX *= -1
-                diff = (new_x + self.mSize) - self.mRightPaddleX
-                act_x = self.mRightPaddleX - diff - self.mSize
-                return act_x
-            else:
-                return new_x
+        print(new_y, self.mY)
+        mid_y = (new_y + self.mY) / 2
+        print(mid_y, self.mRightPaddleMinY, mid_y >= self.mRightPaddleMinY)
+        print(mid_y, self.mRightPaddleMaxY, mid_y <= self.mRightPaddleMaxY) 
+        print((new_x + self.mSize), self.mRightPaddleX, (new_x + self.mSize) >= self.mRightPaddleX)
+        print((self.mX + self.mSize), self.mRightPaddleX, (self.mX + self.mSize) <= self.mRightPaddleX)
+        if mid_y >= self.mRightPaddleMinY and mid_y <= self.mRightPaddleMaxY and (new_x + self.mSize) >= self.mRightPaddleX and (self.mX + self.mSize) <= self.mRightPaddleX:
+            dif = new_x - self.mRightPaddleX + self.mSize
+            new = (self.mRightPaddleX -self.mSize) - dif
+            print("dif", dif)
+            print("new", new)
+            self.mDX = -self.mDX
+            return new
         else:
             return new_x
 
 
     def move(self, dt):
-        new_x = self.mX + self.mDX * dt
-        new_y = self.mY + self.mDY * dt
-
-        new_y = self.checkTop(new_y)
-        new_y = self.checkBottom(new_y)
-
-        new_x = self.checkLeft(new_x)
-        new_x = self.checkRight(new_x)
-
-        new_x = self.checkLeftPaddle(new_x, new_y)
-        new_x = self.checkRightPaddle(new_x, new_y)
-
-        self.mX = new_x
-        self.mY = new_y
-
-
-    def serveLeft(x,min_y,max_y,min_dx,max_dx,min_dy,max_dy):
         pass
 
 
-    def serveRight(x,min_y,max_y,min_dx,max_dx,min_dy,max_dy):
+    def serveLeft(self, x,min_y,max_y,min_dx,max_dx,min_dy,max_dy):
         pass
 
 
-    def draw(surface):
+    def serveRight(self, x,min_y,max_y,min_dx,max_dx,min_dy,max_dy):
+        pass
+
+
+    def draw(self, surface):
         pass
 
 
     
+
+
+
+
+
+
+
+
+
+
 
 
 
