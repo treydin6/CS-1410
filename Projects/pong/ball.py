@@ -1,4 +1,5 @@
-
+from random import uniform
+import pygame
 
 
 class Ball:
@@ -71,8 +72,6 @@ class Ball:
     
     
     def setPosition(self, x, y):
-        # if x > self.getMinX() + self.getSize() and x < self.getMaxY() - self.getSize():
-        #     if y > self.getMinY() + self.getSize() and y < self.getMaxY() - self.getSize():
         if x >= self.mMinX and (x + self.mSize) <= self.mMaxX:
             if y >= self.mMinY and (y + self.mSize) <= self.mMaxY:
                 self.mX = x
@@ -145,37 +144,51 @@ class Ball:
 
     
     def checkRightPaddle(self, new_x, new_y):
-        print(new_y, self.mY)
         mid_y = (new_y + self.mY) / 2
-        print(mid_y, self.mRightPaddleMinY, mid_y >= self.mRightPaddleMinY)
-        print(mid_y, self.mRightPaddleMaxY, mid_y <= self.mRightPaddleMaxY) 
-        print((new_x + self.mSize), self.mRightPaddleX, (new_x + self.mSize) >= self.mRightPaddleX)
-        print((self.mX + self.mSize), self.mRightPaddleX, (self.mX + self.mSize) <= self.mRightPaddleX)
         if mid_y >= self.mRightPaddleMinY and mid_y <= self.mRightPaddleMaxY and (new_x + self.mSize) >= self.mRightPaddleX and (self.mX + self.mSize) <= self.mRightPaddleX:
             dif = new_x - self.mRightPaddleX + self.mSize
             new = (self.mRightPaddleX -self.mSize) - dif
-            print("dif", dif)
-            print("new", new)
             self.mDX = -self.mDX
             return new
         else:
             return new_x
 
 
-    def move(self, dt):
-        pass
+    def move(self, dt):  # amount of seconds since last frame
+        # Uses mX, mDX and dt to calculate new_x
+        new_x = self.mX + self.mDX * dt
+        new_y = self.mY + self.mDY * dt
+
+        new_x = self.checkLeft(new_x)
+        new_x = self.checkRight(new_x)
+
+        new_y = self.checkTop(new_y)
+        new_y = self.checkBottom(new_y)
+
+        new_x = self.checkLeftPaddle(new_x, new_y)
+        new_x = self.checkRightPaddle(new_x, new_y)
+
+        self.mX = new_x
+        self.mY = new_y        
 
 
-    def serveLeft(self, x,min_y,max_y,min_dx,max_dx,min_dy,max_dy):
-        pass
+    def serveLeft(self, x ,min_y,max_y,min_dx,max_dx,min_dy,max_dy):
+        self.mX = x
+        self.mY = uniform(min_y, max_y)         # random.uniform
+        self.mDX = uniform(min_dx, max_dx)
+        self.mDY = uniform(min_dy, max_dy)
 
 
     def serveRight(self, x,min_y,max_y,min_dx,max_dx,min_dy,max_dy):
-        pass
+        self.mX = x
+        self.mY = uniform(min_y, max_y)         # random.uniform
+        self.mDX = uniform(-min_dx, -max_dx)
+        self.mDY = uniform(min_dy, max_dy)
 
 
     def draw(self, surface):
-        pass
+        ball = (self.mX, self.mY, self.mSize, self.mSize)
+        draw.rect(surface, (0, 200, 0), ball)
 
 
     
