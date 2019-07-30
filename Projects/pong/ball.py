@@ -187,8 +187,8 @@ class Ball:
 
 
     def draw(self, surface):
-        ball = (self.mX, self.mY, self.mSize, self.mSize)
-        draw.rect(surface, (0, 200, 0), ball)
+        ball = pygame.Rect(self.mX, self.mY, self.mSize, self.mSize)
+        pygame.draw.rect(surface, (0, 200, 0), ball, 0)
 
 
     
