@@ -11,7 +11,7 @@ WINDOW_WIDTH  = 800
 # pixels high
 WINDOW_HEIGHT = 600
 # frames per second
-DESIRED_RATE  = 30
+DESIRED_RATE  = 60
 
 class PygameApp( game.Game ):
 
