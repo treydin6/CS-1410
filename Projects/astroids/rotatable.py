@@ -45,7 +45,7 @@ class Rotatable(movable.Movable):
     
     
     def translatePoint(self, x,y):
-        return (x+self.mX, y + self.mY)
+        return (x + self.mX, y + self.mY)
     
     
     def rotateAndTranslatePoint(self, x,y):
@@ -56,6 +56,8 @@ class Rotatable(movable.Movable):
     
     def rotateAndTranslatePointList(self, point_list):
         points = []
-        for p in points:
+        for p in point_list:
             points.append(self.rotateAndTranslatePoint(p[0],p[1]))
         return points
+
+        

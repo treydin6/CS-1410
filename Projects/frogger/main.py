@@ -5,7 +5,7 @@ import frogger
 TITLE = "Frogger"
 CELL_SIZE = 50
 NUM_COL = 14
-NUM_ROW = 12
+NUM_ROW = 12 # change this for more or less roads
 WINDOW_WIDTH  = NUM_COL * CELL_SIZE
 WINDOW_HEIGHT = NUM_ROW * CELL_SIZE
 DESIRED_RATE  = 60
