@@ -14,3 +14,5 @@ Program 4 | Caloric Balance | Calculates calories for a person using classes
 Program 5 | Word Zap | A game...
 Program 6 | Illustrate | Intro to pygame, Draw a picture
 Program 7 | Pong | Making the game pong
+Program 8 | Frogger | Making frogger game, only completed half of the game
+Program 9 | Asteroids | Completed part 1 of asteroids, part 2 was not required
